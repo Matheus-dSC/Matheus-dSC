@@ -1,25 +1,24 @@
-nome : Gerar Dados
-
-em :
+name: Generate datas
+on :
   schedule : # executa a cada 12 horas
 -cron     : " * */12 * * * "
   workflow_dispatch :
 
-empregos :
-  construir :
+jobs :
+  build :
     name : Jobs para atualizar dados
     run-on : ubuntu-latest
-    passos :
-      # Animação de cobra
-      - usa : Platane/snk@master
+    steps :
+      # Snake animation
+      - uses : Platane/snk@master
         id : cobra-gif
-        com :
+        with :
           github_user_name : Matheus-dSC
           svg_out_path : dist/github-contribution-grid-snake.svg
 
-      - usa : crazy-max/ghaction-github-pages@v2.1.3
-        com :
+      - uses : crazy-max/ghaction-github-pages@v2.1.3
+        with :
           target_branch : saída
           build_dir : dist
-        ambiente :
+        env :
           GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
